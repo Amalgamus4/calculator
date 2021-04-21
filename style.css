@@ -19,6 +19,7 @@
   flex-direction: column;
   position: relative;
   left: 82px;
+  width: auto;
 }
 
 #display {
@@ -42,4 +43,8 @@
 @font-face {
   font-family: digital;
   src: url('digital-7.ttf');
+}
+
+#equals {
+  width: auto;
 }
