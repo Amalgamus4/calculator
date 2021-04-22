@@ -7,35 +7,33 @@
     <script src="calc.js" defer></script>
   </head>
   <body>
-    <div id="display">
+    <div id="calculator">
+      <div id="display"></div>
+      <div class="buttons">
+        <div id="clearButton"><button class="functionButton" id="clear">C</button></div>
+        <div class="numberButtons">
+          <div><button class="numberButton">1</button></div>
+          <div><button class="numberButton">2</button></div>
+          <div><button class="numberButton">3</button></div>
+          <div><button class="numberButton">4</button></div>
+          <div><button class="numberButton">5</button></div>
+          <div><button class="numberButton">6</button></div>
+          <div><button class="numberButton">7</button></div>
+          <div><button class="numberButton">8</button></div>
+          <div><button class="numberButton">9</button></div>
+          <div><button class="button" id="inverse">+/-</button></div>
+          <div><button class="numberButton" id="0">0</button></div>
+          <div><button class="numberButton" id="decimal">.</button></div>
+        </div>
 
+        <div class="functionButtons">
+          <div><button class="functionButton" id="add">+</button></div>
+          <div><button class="functionButton" id="subtract">-</button></div>
+          <div><button class="functionButton" id="multiply">*</button></div>
+          <div><button class="functionButton" id="divide">/</button></div>
+          <div><button class="button" id="equals">=</button></div>
+        </div>
+      </div>
     </div>
-    <div class="buttons">
-
-    <div class="numberButtons">
-      <button class="numberButton" id="1">1</button>
-      <button class="numberButton" id="2">2</button>
-      <button class="numberButton" id="3">3</button>
-      <button class="numberButton" id="4">4</button>
-      <button class="numberButton" id="5">5</button>
-      <button class="numberButton" id="6">6</button>
-      <button class="numberButton" id="7">7</button>
-      <button class="numberButton" id="8">8</button>
-      <button class="numberButton" id="9">9</button>
-      <button class="button" id="inverse">+/-</button>
-      <button class="numberButton" id="0">0</button>
-      <button class="numberButton" id="decimal">.</button>
-    </div>
-
-      <div class="functionButtons">
-      <button class="functionButton" id="clear">C</button>
-      <button class="functionButton" id="add">+</button>
-      <button class="functionButton" id="subtract">-</button>
-      <button class="functionButton" id="multiply">*</button>
-      <button class="functionButton" id="divide">/</button>
-      <button class="button" id="equals">=</button>
-    </div>
-  </div>
-
   </body>
 </html>

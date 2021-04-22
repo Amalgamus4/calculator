@@ -17,7 +17,13 @@ function displayNumber() {
     clearDisplay();
     changeClearState();
   }
-  document.getElementById('display').textContent += this.textContent;
+  input = document.getElementById('display');
+  input.textContent += this.textContent;
+  if (input.textContent.length > 17) {
+    let number = Number(input.textContent).toExponential();
+    console.log(number);
+    input.textContent = number;
+  }
 }
 
 const functionButton = document.querySelectorAll('.functionButton');
@@ -63,7 +69,7 @@ function operate(operator, a, b) {
 }
 
 function add (a, b) {
-  return a + b;
+  return ((a * 10) + (b * 10)) / 10;
 }
 
 function subtract(a,b) {
