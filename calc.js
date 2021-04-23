@@ -2,6 +2,8 @@
 let operator = '';
 let num1 = 0;
 let clearState = true;
+let input;
+let decimalState = false;
 
 clearDisplay();
 
@@ -17,19 +19,36 @@ function displayNumber() {
     clearDisplay();
     changeClearState();
   }
+  if (decimalState === true) checkForDecimal();
   input = document.getElementById('display');
   input.textContent += this.textContent;
+  checkNumberLength();
+}
+
+function checkNumberLength() {
   if (input.textContent.length > 17) {
-    let number = Number(input.textContent).toExponential();
-    console.log(number);
-    input.textContent = number;
+    input.textContent = input.textContent.slice(1);
   }
 }
 
-const functionButton = document.querySelectorAll('.functionButton');
-functionButton.forEach(button => button.addEventListener('click', addOperation));
+function checkForDecimal() {
+  const decimal = document.querySelector('#decimal');
+  if (document.getElementById('display').textContent.includes('.')) {
+    decimal.removeEventListener('click', displayNumber);
+    changeDecimalState();
+    return;
+  } decimal.addEventListener('click', displayNumber);
+}
 
-function addOperation() {
+function changeDecimalState() {
+  (decimalState === true) ? decimalState = false : decimalState = true;
+}
+
+const functionButton = document.querySelectorAll('.functionButton');
+functionButton.forEach(button => button.addEventListener('click', storeOperation));
+
+function storeOperation() {
+  if (operator !== '') compute();
   operator = this.textContent;
   num1 = Number(document.getElementById('display').textContent);
   clearState = true;
@@ -40,15 +59,23 @@ equals.addEventListener('click', compute);
 
 function compute() {
   let num2 = Number(document.getElementById('display').textContent);
-  document.getElementById('display').textContent = operate(operator, num1, num2);
+  document.getElementById('display').textContent = roundResult(operate(operator, num1, num2));
   changeClearState();
+  operator = '';
 }
 
 const clearButton = document.querySelector('#clear');
-clearButton.addEventListener('click', clearDisplay)
+clearButton.addEventListener('click', clearAll)
+
+function clearAll() {
+  document.getElementById('display').textContent = '';
+  decimal.addEventListener('click', displayNumber);
+  operator = '';
+}
 
 function clearDisplay() {
   document.getElementById('display').textContent = '';
+  decimal.addEventListener('click', displayNumber);
 }
 
 const inverse = document.querySelector('#inverse');
@@ -69,7 +96,7 @@ function operate(operator, a, b) {
 }
 
 function add (a, b) {
-  return ((a * 10) + (b * 10)) / 10;
+  return a + b;
 }
 
 function subtract(a,b) {
@@ -80,5 +107,10 @@ function multiply(a,b) {
 }
 
 function divide(a,b) {
+  if (b === 0) return "Error";
   return a / b;
 }
+
+function roundResult(number) {
+  return Math.round(number * 1000) / 1000;
+} // credit to user michalosman for this round function to fix .1 + .2 bug
